@@ -156,7 +156,6 @@
             this.description = ''
           } catch (e) {}
         } else {
-          debugger
           this.$message(`Недостаточно средств на счете (${this.amount - this.info.bill})`)
         }
       }
