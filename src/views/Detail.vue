@@ -4,9 +4,9 @@
 
     <div v-else-if="record">
       <div class="breadcrumb-wrap">
-        <router-link to="/history" class="breadcrumb">История</router-link>
+        <router-link to="/history" class="breadcrumb">{{'Menu_History' | localize}}</router-link>
         <a @click.prevent class="breadcrumb">
-          {{record.type === 'income' ? 'Доход' : 'Расход'}}
+          {{record.textType}}
         </a>
       </div>
       <div class="row">
@@ -19,9 +19,9 @@
             class="card"
           >
             <div class="card-content white-text">
-              <p>Описание: {{record.description}}</p>
-              <p>Сумма: {{record.amount | currency('RUB')}}</p>
-              <p>Категория: {{record.categoryName}}</p>
+              <p>{{'Record_Description' | localize}}: {{record.description}}</p>
+              <p>{{'Sum' | localize}}: {{record.amount | currency('RUB')}}</p>
+              <p>{{'Record_Category' | localize}}: {{record.categoryName}}</p>
 
               <small>{{record.date | date('datetime')}}</small>
             </div>
@@ -29,30 +29,33 @@
         </div>
       </div>
     </div>
-    <p class="center" v-else>Запись с id=<strong>{{$route.params.id}}</strong> не найдена</p>
+    <p class="center" v-else>{{'Message_RecordNotFoundStart' | localize}}<strong>{{$route.params.id}}</strong>{{'Message_RecordNotFoundEnd' | localize}}</p>
   </div>
 </template>
 
 <script>
-export default {
-  name: 'detail',
-  data: () => ({
-    record: null,
-    loading: true
-  }),
-  async mounted() {
-    const id = this.$route.params.id
-    const record = await this.$store.dispatch('fetchRecordById', id)
-    const category = await this.$store.dispatch('fetchCategoryById', record.categoryId)
+  import localizeFilter from '../filters/localize.filter'
 
-    this.record = {
-      ...record,
-      categoryName: category.title
+  export default {
+    name: 'detail',
+    data: () => ({
+      record: null,
+      loading: true
+    }),
+    async mounted() {
+      const id = this.$route.params.id
+      const record = await this.$store.dispatch('fetchRecordById', id)
+      const category = await this.$store.dispatch('fetchCategoryById', record.categoryId)
+
+      this.record = {
+        ...record,
+        textType: record.type === 'income' ? localizeFilter('Income') : localizeFilter('Outcome'),
+        categoryName: category.title
+      }
+
+      this.loading = false
     }
-
-    this.loading = false
   }
-}
 </script>
 
 <style lang="scss" scoped>

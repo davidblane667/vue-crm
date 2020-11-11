@@ -5,7 +5,7 @@
 
       <Navbar @click="isOpen = !isOpen"/>
 
-      <Sidebar v-model="isOpen"/>
+      <Sidebar v-model="isOpen" :key="locale"/>
 
       <main class="app-content" :class="{full: !isOpen}">
         <div class="app-page">
@@ -14,7 +14,7 @@
       </main>
 
       <div class="fixed-action-btn">
-        <router-link class="btn-floating btn-large blue" to="/record" data-position="left" v-tooltip="'Создать новую запись'">
+        <router-link class="btn-floating btn-large blue" to="/record" data-position="left" v-tooltip="createRecordTooltip" :key="locale">
           <i class="large material-icons">add</i>
         </router-link>
       </div>
@@ -26,6 +26,7 @@
   import Navbar from '../components/app/Navbar'
   import Sidebar from '../components/app/Sidebar'
   import messages from '../utils/messages'
+  import localizeFilter from '../filters/localize.filter'
 
   export default {
     name: 'main-layout',
@@ -43,6 +44,12 @@
     computed: {
       error() {
         return this.$store.getters.error
+      },
+      locale() {
+        return this.$store.getters.info.locale
+      },
+      createRecordTooltip() {
+        return localizeFilter('Tooltip_CreateRecord')
       }
     },
     watch: {
