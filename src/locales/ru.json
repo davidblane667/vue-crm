@@ -3,6 +3,8 @@
   "ProfileTitle": "Профиль",
   "HistoryTitle": "История записей",
   "RecordTitle": "Новая запись",
+  "LoginTitle": "Войти",
+  "RegisterTitle": "Регистрация",
   "Message_EnterName": "Введите имя",
   "Message_EnterDescr": "Введите описание",
   "Message_CategoriesEmpty": "Категорий пока нет",

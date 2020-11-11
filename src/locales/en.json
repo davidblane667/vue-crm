@@ -3,6 +3,8 @@
   "ProfileTitle": "Profile",
   "HistoryTitle": "Record history",
   "RecordTitle": "New record",
+  "LoginTitle": "Login",
+  "RegisterTitle": "Register",
   "Message_EnterName": "Enter name",
   "Message_EnterDescr": "Enter description",
   "Message_CategoriesEmpty": "No categories yet",

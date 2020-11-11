@@ -1,9 +1,7 @@
 export default {
-  // eslint-disable-next-line
-  'login': 'Для начала войдите в систему',
-  // eslint-disable-next-line
-  'logout': 'Вы вышли из системы',
-  'auth/user-not-found': 'Пользователя с таким Email не обнаружено',
-  'auth/wrong-password': 'Неверный пароль',
-  'auth/email-already-in-use': 'Пользователь с таким Email уже существует'
+  login: 'Message_Login',
+  logout: 'Message_Quit',
+  'auth/user-not-found': 'Message_ErrorEmailNotFound',
+  'auth/wrong-password': 'Message_ErrorPassword',
+  'auth/email-already-in-use': 'Message_ErrorEmailFound'
 }
